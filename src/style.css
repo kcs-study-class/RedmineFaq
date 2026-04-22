@@ -69,7 +69,7 @@ body {
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
-  padding: 0 24px 80px;
+  padding: 0 24px 24px;
   gap: 0;
 }
 
@@ -490,6 +490,14 @@ body {
   color: var(--color-accent-hover);
 }
 
+.faq-answer-inner img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  margin: 8px 0 12px;
+  border: 1px solid var(--color-border);
+}
+
 /* ===== 検索ハイライト ===== */
 .highlight {
   background: var(--color-accent-soft);
@@ -521,6 +529,80 @@ body {
   min-height: 200px;
   color: var(--color-text-muted);
   font-size: 14px;
+}
+
+/* ===== フッター ===== */
+.footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 100;
+  border-top: 1px solid var(--color-border);
+  background: var(--color-header-bg);
+  backdrop-filter: blur(12px);
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.footer-copy {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.footer-version {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-text-muted);
+  background: var(--color-accent-soft);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 2px 8px;
+}
+
+/* ===== トップへ戻るボタン ===== */
+.scroll-top {
+  position: fixed;
+  bottom: 56px;
+  right: 24px;
+  z-index: 200;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity var(--transition), transform var(--transition), background var(--transition), color var(--transition), border-color var(--transition);
+}
+
+.scroll-top--visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.scroll-top:hover {
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.scroll-top svg {
+  width: 16px;
+  height: 16px;
 }
 
 /* ===== モバイル ===== */
@@ -616,5 +698,14 @@ body {
 
   .faq-answer-inner {
     padding-left: 20px;
+  }
+
+  .footer-inner {
+    padding: 10px 16px;
+  }
+
+  .scroll-top {
+    right: 16px;
+    bottom: 52px;
   }
 }

@@ -3,6 +3,7 @@ import Fuse from 'fuse.js'
 import Header from './components/Header'
 import Sidebar from './components/Sidebar'
 import FaqList from './components/FaqList'
+import Footer from './components/Footer'
 import { useTheme } from './hooks/useTheme'
 
 const DEBOUNCE_MS = 200
@@ -100,6 +101,7 @@ export default function App() {
           )}
         </main>
       </div>
+      <Footer />
     </div>
   )
 }
