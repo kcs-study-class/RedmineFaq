@@ -1,0 +1,23 @@
+# 依存パッケージ
+node_modules/
+
+# ビルド成果物
+dist/
+
+# ビルドスクリプトの生成物
+public/faq-index.json
+
+# 環境変数
+.env
+.env.local
+.env.*.local
+
+# エディタ・OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# ログ
+*.log
+npm-debug.log*

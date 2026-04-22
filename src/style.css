@@ -1,0 +1,620 @@
+/* ===== CSS変数（ダークモード・デフォルト） ===== */
+:root,
+[data-theme="dark"] {
+  --color-bg: #0d0f1a;
+  --color-surface: #13162a;
+  --color-border: #1e2240;
+  --color-text: #e8e4d9;
+  --color-text-muted: #8a8fa8;
+  --color-accent: #c8922a;
+  --color-accent-hover: #e0a830;
+  --color-accent-soft: rgba(200, 146, 42, 0.12);
+  --color-header-bg: rgba(13, 15, 26, 0.92);
+  --color-sidebar-bg: rgba(13, 15, 26, 0.95);
+
+  --font-display: 'Shippori Mincho', serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --header-height: 64px;
+  --sidebar-width: 220px;
+  --radius: 8px;
+  --transition: 200ms ease;
+}
+
+/* ===== ライトモード ===== */
+[data-theme="light"] {
+  --color-bg: #f4f1eb;
+  --color-surface: #ffffff;
+  --color-border: #ddd9cf;
+  --color-text: #1a1c2e;
+  --color-text-muted: #6b6f82;
+  --color-accent: #b07818;
+  --color-accent-hover: #935f0c;
+  --color-accent-soft: rgba(176, 120, 24, 0.10);
+  --color-header-bg: rgba(244, 241, 235, 0.92);
+  --color-sidebar-bg: rgba(244, 241, 235, 0.97);
+}
+
+/* ===== リセット ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== レイアウト ===== */
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-wrapper {
+  display: flex;
+  flex: 1;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+  gap: 0;
+}
+
+/* ===== ヘッダー ===== */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--header-height);
+  background: var(--color-header-bg);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.logo-mark {
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--color-accent);
+  line-height: 1;
+}
+
+.logo-text {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+/* ===== テーマトグル ===== */
+.theme-toggle {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+
+.theme-toggle:hover {
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.theme-toggle svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ===== 検索 ===== */
+.search-wrap {
+  flex: 1;
+  max-width: 480px;
+  margin-left: auto;
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  height: 38px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 0 14px 0 36px;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 14px;
+  outline: none;
+  transition: border-color var(--transition);
+}
+
+.search-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.search-input:focus {
+  border-color: var(--color-accent);
+}
+
+.search-input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+/* ===== サイドバー ===== */
+.sidebar {
+  width: var(--sidebar-width);
+  flex-shrink: 0;
+  padding-top: 40px;
+  padding-right: 32px;
+  position: sticky;
+  top: var(--header-height);
+  align-self: flex-start;
+  max-height: calc(100vh - var(--header-height));
+  overflow-y: auto;
+  transition: opacity var(--transition);
+}
+
+.sidebar--disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.sidebar-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 12px;
+}
+
+.category-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.category-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 7px 10px;
+  border: none;
+  background: transparent;
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  font-size: 14px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  text-align: left;
+  transition: background var(--transition), color var(--transition);
+}
+
+.category-btn:hover:not(:disabled) {
+  background: var(--color-accent-soft);
+  color: var(--color-text);
+}
+
+.category-btn--active {
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+.category-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+
+.category-btn--active .category-dot {
+  opacity: 1;
+}
+
+/* ===== メインコンテンツ ===== */
+.main {
+  flex: 1;
+  min-width: 0;
+  padding-top: 40px;
+}
+
+/* ===== FAQグループ ===== */
+.faq-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.faq-group-title {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* ===== FAQリスト ===== */
+.faq-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* ===== FAQアイテム ===== */
+.faq-item {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  animation: fadeSlideIn 400ms ease both;
+  animation-delay: var(--delay, 0ms);
+}
+
+.faq-item--open {
+  border-color: var(--color-accent);
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== 質問ボタン ===== */
+.faq-question {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 18px 20px;
+  border: none;
+  background: transparent;
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 400;
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--transition);
+  line-height: 1.5;
+}
+
+.faq-question:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.faq-item--open .faq-question {
+  background: var(--color-accent-soft);
+}
+
+.faq-q-mark {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-accent);
+  border-radius: 4px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--color-accent);
+}
+
+.faq-q-text {
+  flex: 1;
+}
+
+.faq-chevron {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: var(--color-text-muted);
+  transition: transform var(--transition);
+}
+
+.faq-item--open .faq-chevron {
+  transform: rotate(180deg);
+}
+
+/* ===== 回答 ===== */
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition), opacity var(--transition);
+  opacity: 0;
+}
+
+.faq-item--open .faq-answer {
+  opacity: 1;
+}
+
+.faq-answer-inner {
+  padding: 4px 20px 20px 56px;
+  color: var(--color-text-muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* 回答内のMarkdown要素 */
+.faq-answer-inner p {
+  margin-bottom: 12px;
+}
+
+.faq-answer-inner p:last-child {
+  margin-bottom: 0;
+}
+
+.faq-answer-inner ul,
+.faq-answer-inner ol {
+  padding-left: 20px;
+  margin-bottom: 12px;
+}
+
+.faq-answer-inner li {
+  margin-bottom: 4px;
+}
+
+.faq-answer-inner strong {
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.faq-answer-inner code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 1px 6px;
+  border-radius: 4px;
+  color: var(--color-accent-hover);
+}
+
+.faq-answer-inner pre {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  overflow-x: auto;
+  margin-bottom: 12px;
+}
+
+.faq-answer-inner pre code {
+  background: none;
+  padding: 0;
+  color: var(--color-text);
+}
+
+.faq-answer-inner table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 12px;
+  font-size: 13px;
+}
+
+.faq-answer-inner th {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--color-text);
+  font-weight: 500;
+  padding: 8px 12px;
+  border: 1px solid var(--color-border);
+  text-align: left;
+}
+
+.faq-answer-inner td {
+  padding: 8px 12px;
+  border: 1px solid var(--color-border);
+}
+
+.faq-answer-inner blockquote {
+  border-left: 3px solid var(--color-accent);
+  padding-left: 14px;
+  color: var(--color-text-muted);
+  margin-bottom: 12px;
+  font-style: italic;
+}
+
+.faq-answer-inner a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.faq-answer-inner a:hover {
+  color: var(--color-accent-hover);
+}
+
+/* ===== 検索ハイライト ===== */
+.highlight {
+  background: var(--color-accent-soft);
+  color: var(--color-accent-hover);
+  border-radius: 2px;
+  padding: 0 2px;
+}
+
+/* ===== 空状態 ===== */
+.empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius);
+}
+
+.empty-state-text {
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+
+/* ===== ローディング ===== */
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+
+/* ===== モバイル ===== */
+@media (max-width: 768px) {
+  .content-wrapper {
+    flex-direction: column;
+    padding: 0 16px 60px;
+  }
+
+  .sidebar {
+    /* content-wrapper の padding を突き破って画面端まで伸ばす */
+    width: calc(100% + 32px);
+    margin-left: -16px;
+    margin-right: -16px;
+    position: sticky;
+    top: var(--header-height);
+    z-index: 10;
+    padding: 0;
+    max-height: none;
+    /* category-list のスクロールを正しく機能させるため overflow-x: hidden */
+    overflow: hidden;
+    background: var(--color-sidebar-bg);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  /* 右端フェード：まだスクロールできることを示す視覚ヒント */
+  .sidebar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 48px;
+    height: 100%;
+    background: linear-gradient(to right, transparent, var(--color-sidebar-bg));
+    pointer-events: none;
+  }
+
+  .sidebar--disabled {
+    opacity: 0.4;
+  }
+
+  .sidebar-label {
+    display: none;
+  }
+
+  .category-list {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    /* -webkit-overflow-scrolling でiOSのスムーズスクロールを有効化 */
+    -webkit-overflow-scrolling: touch;
+    gap: 6px;
+    padding: 10px 16px;
+    /* 末尾アイテムがフェードに隠れないよう右に余白を追加 */
+    padding-right: 56px;
+    scrollbar-width: none;
+  }
+
+  .category-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .category-btn {
+    white-space: nowrap;
+    padding: 6px 14px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    flex-shrink: 0;
+    border-radius: 20px;
+    font-size: 13px;
+  }
+
+  .category-btn--active {
+    border-color: var(--color-accent);
+  }
+
+  .category-dot {
+    display: none;
+  }
+
+  .main {
+    padding-top: 24px;
+  }
+
+  .logo-text {
+    font-size: 14px;
+  }
+
+  .search-wrap {
+    max-width: none;
+  }
+
+  .faq-answer-inner {
+    padding-left: 20px;
+  }
+}
