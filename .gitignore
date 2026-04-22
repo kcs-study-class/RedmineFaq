@@ -4,6 +4,9 @@ node_modules/
 # ビルド成果物
 dist/
 
+# Vite 開発サーバーキャッシュ
+.vite/
+
 # ビルドスクリプトの生成物
 public/faq-index.json
 
